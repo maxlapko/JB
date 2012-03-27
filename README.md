@@ -4,17 +4,21 @@ JSON Builder for heavy struct for Yii (analog jbuilder(ruby))
     PHP version >= 5.3
 
 ## Getting started
-------------
 
 Put files to protected/components directory
 
 Import files:
+
 ```php
 //protected/config/main.php
-'import' => array(
-    ...
-    'application.components.*',    
-),
+
+return array(
+    'import' => array(
+        //...
+        'application.components.*',    
+    ),
+    //...
+);
 ```
 
 ### Configuring Controllers
@@ -53,6 +57,8 @@ Example:
     HTML template   index.php
     JSON template   index_json.php
 
+All render variables available as JB::getVar(name)
+ 
 ```php
 //view/items/index_json.php
 
@@ -76,7 +82,7 @@ Return JSON
 ```javascript
 {
     items: [{ 
-        id: 1, name: 'Test 1', price: 0.55, url: '/items/1', 
+        id: 1, name: "Test 1", price: 0.55, url: "/items/1", 
         comments: [{id: 2, item_id: 1, content: "dddd ..."}, {....}, ...] 
     }, ....],
     totalCount: 5,
@@ -89,8 +95,10 @@ Return JSON
 
 ### Other
 
-Also all pages allows as json
-Example http://your_host/items?_format=json
+Also all pages available as json
+Example 
+
+        http://your_host/items?_format=json
         http://your_host/items/1?_format=json
 
 if json template not found, return echo CJSON::encode(renderData); 
